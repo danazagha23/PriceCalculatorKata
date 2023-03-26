@@ -1,4 +1,5 @@
 ﻿using System;
+using PriceCalculatorSolution;
 
 namespace KataProgram
 {
@@ -6,7 +7,9 @@ namespace KataProgram
     {
         static void Main(string[] args) 
         {
-            Console.WriteLine("Hello, World!");
+            Product product = new Product("Book", 12345, 20.25M);
+
+            Console.WriteLine(product.DisplayProductPrice());
         }
     }
 }
