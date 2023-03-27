@@ -11,15 +11,15 @@ namespace PriceCalculatorSolution
         public string Name { get; set; }
         public int UPC { get; set; }
         public decimal BasicPrice { get; set; }
-        
-        public decimal PriceWithTax 
-        { 
+
+        public decimal PriceWithTax
+        {
             get
             {
                 return BasicPrice + Tax.ProductTax(BasicPrice);
             }
-        }    
-        public Product(string name, int upc, decimal priceWithPrice) 
+        }
+        public Product(string name, int upc, decimal priceWithPrice)
         {
             Name = name;
             UPC = upc;
