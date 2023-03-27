@@ -11,12 +11,12 @@ namespace PriceCalculatorSolution
         public string Name { get; set; }
         public int UPC { get; set; }
         public decimal BasicPrice { get; set; }
+        
         public decimal PriceWithTax 
         { 
             get
             {
-                decimal tax = (decimal.Round(BasicPrice ,2, MidpointRounding.AwayFromZero) * 20) / 100;
-                return BasicPrice + tax;
+                return BasicPrice + Tax.ProductTax(BasicPrice);
             }
         }    
         public Product(string name, int upc, decimal priceWithPrice) 
