@@ -10,13 +10,19 @@ namespace KataProgram
             Console.WriteLine("Enter tax percentage:");
             int tax = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Enter discount percentage:");
-            int discount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter universal discount percentage:");
+            int universalDiscount = Convert.ToInt32(Console.ReadLine());
 
-            PriceCalculations calc = new PriceCalculations(tax, discount);
-            Product product = new Product("Book", 12345, 20.25M);
+            var upcSpecialCodes = new Dictionary<int, int>()
+            {
+                {12345, 7},
+                {789, 7 }
+            };
 
-            Console.WriteLine(product.DisplayProductPrice());
+            PriceCalculations calc = new PriceCalculations(tax, universalDiscount, upcSpecialCodes);
+            Product product = new Product("Book", 789, 20.25M);
+
+            product.DisplayProductPrice();
         }
     }
 }

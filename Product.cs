@@ -14,12 +14,13 @@ namespace PriceCalculatorSolution
         public static decimal BasicPrice { get; set; }
 
         decimal tax;
-        decimal discount;
+        decimal universalDiscount;
+        decimal upcDiscount;
         public decimal TotalPrice
         {
             get
             {
-                return BasicPrice + tax - discount;
+                return BasicPrice + tax - universalDiscount - upcDiscount;
             }
         }
         public Product(string name, int upc, decimal price)
@@ -28,16 +29,13 @@ namespace PriceCalculatorSolution
             UPC = upc;
             BasicPrice = price;
             tax = PriceCalculations.ProductTax(BasicPrice);
-            discount = PriceCalculations.ProductDiscount(BasicPrice);
+            universalDiscount = PriceCalculations.UniversalProductDiscount(BasicPrice);
+            upcDiscount = PriceCalculations.UPCProductDiscount(BasicPrice, upc);
         }
-        public string DisplayProductPrice()
+        public void DisplayProductPrice()
         {
-            return $"Tax = {PriceCalculations.TaxPercentage} %, " +
-                   $"Discount = {PriceCalculations.DiscountPercentage} %, " +
-                   $"Tax amount = {tax}, " +
-                   $"Discount amount = {discount}, " +
-                   $"Price before = {BasicPrice}, " +
-                   $"Price after = {TotalPrice} ";
+            Console.WriteLine($"Price = {TotalPrice}");
+            Console.WriteLine($"Total discount amount: {universalDiscount + upcDiscount}");
         }
     }
 }
