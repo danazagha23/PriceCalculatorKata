@@ -8,7 +8,7 @@ namespace PriceCalculatorSolution
 {
     public class Tax
     {
-        public static int TaxPercentage;
+        static int TaxPercentage;
         public Tax(int _taxPercentage) 
         {
             TaxPercentage = _taxPercentage; 
