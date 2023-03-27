@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,28 @@ namespace PriceCalculatorSolution
     {
         public string Name { get; set; }
         public int UPC { get; set; }
-        public decimal BasicPrice { get; set; }
+        public static decimal BasicPrice { get; set; }
 
-        public decimal PriceWithTax
+        decimal tax;
+        decimal discount;
+        public decimal TotalPrice
         {
             get
             {
-                return BasicPrice + Tax.ProductTax(BasicPrice);
+                return BasicPrice + tax - discount;
             }
         }
-        public Product(string name, int upc, decimal priceWithPrice)
+        public Product(string name, int upc, decimal price)
         {
             Name = name;
             UPC = upc;
-            BasicPrice = priceWithPrice;
+            BasicPrice = price;
+            tax = PriceCalculations.ProductTax(BasicPrice);
+            discount = PriceCalculations.ProductDiscount(BasicPrice);
         }
         public string DisplayProductPrice()
         {
-            return $"Product price reported as ${BasicPrice} before tax and ${PriceWithTax} after 20% tax.";
+            return $"Tax = {PriceCalculations.TaxPercentage} %, discount = {PriceCalculations.DiscountPercentage} % Tax amount = ${tax}; Discount amount = ${discount} Price before = ${BasicPrice}, price after = ${TotalPrice}";
         }
     }
 }
