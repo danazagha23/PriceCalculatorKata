@@ -10,27 +10,36 @@ namespace PriceCalculatorSolution
     {
         public static int TaxPercentage;
         public static int UniversalDiscountPercentage;
+        public static bool TaxPriority;
         static Dictionary<int, int> UpcDiscounts;
-        public PriceCalculations(int _taxPercentage, int _universalDiscount, Dictionary<int, int> _upcDiscount)
+        public PriceCalculations(int _taxPercentage, int _universalDiscount, Dictionary<int, int> _upcDiscount, bool taxPriority)
         {
             TaxPercentage = _taxPercentage;
             UniversalDiscountPercentage = _universalDiscount;
             UpcDiscounts = _upcDiscount;
+            TaxPriority = taxPriority;
         }
+        static decimal tax;
         public static decimal ProductTax(decimal _basicPrice)
-        {
-            return decimal.Round(_basicPrice * TaxPercentage / 100, 2, MidpointRounding.AwayFromZero);
+        { 
+            tax = decimal.Round(_basicPrice * TaxPercentage / 100, 2, MidpointRounding.AwayFromZero);
+            return tax;
         }
+
+        static decimal universalDiscount;
         public static decimal UniversalProductDiscount(decimal _basicPrice)
         {
-
-            return decimal.Round(_basicPrice * UniversalDiscountPercentage / 100, 2, MidpointRounding.AwayFromZero);
+            universalDiscount = decimal.Round(_basicPrice * UniversalDiscountPercentage / 100, 2, MidpointRounding.AwayFromZero);
+            return universalDiscount;
         }
+
+        static decimal upcDiscount;
         public static decimal UPCProductDiscount(decimal _basicPrice, int code)
         {
             if(UpcDiscounts.ContainsKey(code))
             {
-                return decimal.Round(_basicPrice * UpcDiscounts[code] / 100, 2, MidpointRounding.AwayFromZero);
+                upcDiscount = decimal.Round(_basicPrice * UpcDiscounts[code] / 100, 2, MidpointRounding.AwayFromZero);
+                return upcDiscount;
             }
             return 0;
         }
