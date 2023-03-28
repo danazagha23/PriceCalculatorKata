@@ -32,7 +32,12 @@ namespace PriceCalculatorSolution
         }
         public string DisplayProductPrice()
         {
-            return $"Tax = {PriceCalculations.TaxPercentage} %, discount = {PriceCalculations.DiscountPercentage} % Tax amount = ${tax}; Discount amount = ${discount} Price before = ${BasicPrice}, price after = ${TotalPrice}";
+            return $"Tax = {PriceCalculations.TaxPercentage} %, " +
+                   $"Discount = {PriceCalculations.DiscountPercentage} %, " +
+                   $"Tax amount = {tax}, " +
+                   $"Discount amount = {discount}, " +
+                   $"Price before = {BasicPrice}, " +
+                   $"Price after = {TotalPrice} ";
         }
     }
 }
