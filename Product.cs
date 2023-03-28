@@ -32,18 +32,17 @@ namespace PriceCalculatorSolution
         public decimal TotalPrice()
         {
             taxPriority = PriceCalculations.TaxPriority;
-            if(taxPriority)
+            upcDiscount = Discounts.UPCProductDiscount(BasicPrice, UPC);
+            if (taxPriority)
             {
-                upcDiscount = PriceCalculations.UPCProductDiscount(BasicPrice, UPC);
-                tax = PriceCalculations.ProductTax(BasicPrice);
-                universalDiscount = PriceCalculations.UniversalProductDiscount(BasicPrice);
+                tax = AdditionalCosts.ProductTax(BasicPrice);
+                universalDiscount = Discounts.UniversalProductDiscount(BasicPrice);
                 return BasicPrice + tax - universalDiscount - upcDiscount;    
             }
             else
             {
-                upcDiscount = PriceCalculations.UPCProductDiscount(BasicPrice, UPC);
-                tax = PriceCalculations.ProductTax(BasicPrice - upcDiscount);
-                universalDiscount = PriceCalculations.UniversalProductDiscount(BasicPrice - upcDiscount);
+                tax = AdditionalCosts.ProductTax(BasicPrice - upcDiscount);
+                universalDiscount = Discounts.UniversalProductDiscount(BasicPrice - upcDiscount);
                 return BasicPrice + tax - universalDiscount - upcDiscount;
             }
         }
