@@ -10,9 +10,16 @@ namespace KataProgram
     {
         static void Main(string[] args) 
         {
-            string productName = "The Little Prince";
-            int productUpc = 12345;
-            decimal productPrice = 20.25M;
+            Console.WriteLine("Enter product name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter product upc:");
+            int upc = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter product price:");
+            string Price = Console.ReadLine();
+
+            string[] priceCurrency = Price.Split(' ');
+            decimal productPrice = Convert.ToDecimal(priceCurrency[0]);
+            string currency = priceCurrency[1];
 
             Console.WriteLine("Tax =");
             int tax = Convert.ToInt32(Console.ReadLine());
@@ -22,8 +29,9 @@ namespace KataProgram
 
             Console.WriteLine("Cap in [percentage or absolute]");
             bool capInPercentage = Console.ReadLine().Equals("percentage") ? true : false;
+
             Console.WriteLine("Cap =");
-            decimal capAmount = Convert.ToDecimal(Console.ReadLine()); ;
+            decimal capAmount = Convert.ToDecimal(Console.ReadLine()); 
             if (capInPercentage)
             {
                 capAmount = PriceCalculations.PercentageToAbsolute(productPrice, capAmount);
@@ -67,7 +75,7 @@ namespace KataProgram
             AdditionalCosts costs = new AdditionalCosts(tax, packagingAmount, transportAmount);
             Discounts discounts = new Discounts(capAmount, discountMethod, universalDiscount, upcSpecialCodes);
             PriceCalculations calc = new PriceCalculations(taxPriority);
-            Product product = new Product(productName, productUpc, productPrice);
+            Product product = new Product(name, upc, productPrice, currency);
 
 
             product.DisplayProductPrice();
