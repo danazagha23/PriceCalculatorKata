@@ -10,14 +10,13 @@ namespace CostSolution
     public class AdditionalCosts
     {
         public static int TaxPercentage;
-        public static int ExpensesPercentage;
-        public static int ExpensesAmount;
-
-        public AdditionalCosts(int _tax, int _expensesPercentage, int _expensesAmount)
+        public static decimal PackagingAmount;
+        public static decimal TransportAmount;
+        public AdditionalCosts(int _tax, decimal _packagingAmount, decimal _transportAmount)
         {
             TaxPercentage = _tax;
-            ExpensesPercentage = _expensesPercentage;
-            ExpensesAmount = _expensesAmount;
+            PackagingAmount = _packagingAmount;
+            TransportAmount = _transportAmount;
         }
 
         //calculate tax 
@@ -27,9 +26,9 @@ namespace CostSolution
         }
 
         //calculate expenses 
-        public static decimal ProductExpenses(decimal _basicPrice)
+        public static decimal PackagingCost(decimal _basicPrice, bool _isPercentage)
         {
-            return PriceCalculations.PercentageToAbsolute(_basicPrice, ExpensesPercentage) + ExpensesAmount;
+            return PackagingAmount;
         }
     }
 }
