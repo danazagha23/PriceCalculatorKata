@@ -15,6 +15,7 @@ namespace ProductSolution
         public string Name { get; set; }
         public int UPC { get; set; }
         public decimal BasicPrice { get; set; }
+        public string Currency { get; set; }
 
         decimal tax;
         decimal universalDiscount;
@@ -24,11 +25,12 @@ namespace ProductSolution
         bool taxPriority;
 
 
-        public Product(string name, int upc, decimal price)
+        public Product(string name, int upc, decimal price, string currency)
         {
             Name = name;
             UPC = upc;
             BasicPrice = price;
+            Currency = currency;
             taxPriority = PriceCalculations.TaxPriority;
             
             if (taxPriority)
@@ -53,13 +55,13 @@ namespace ProductSolution
         }
         public void DisplayProductPrice()
         {
-            Console.WriteLine($"Cost = {BasicPrice}");
-            Console.WriteLine($"Tax = {tax}");
+            Console.WriteLine($"Cost = {BasicPrice} " + Currency);
+            Console.WriteLine($"Tax = {tax} " + Currency);
             decimal discount = Discounts.capAmount > (universalDiscount + upcDiscount) ? universalDiscount + upcDiscount : Discounts.capAmount;
-            Console.WriteLine($"Discounts: {discount}");
-            Console.WriteLine($"Packaging: {packagingCost}");
-            Console.WriteLine($"Transport: {transportCost}");
-            Console.WriteLine($"Total = {TotalPrice()}");
+            Console.WriteLine($"Discounts: {discount} " + Currency);
+            Console.WriteLine($"Packaging: {packagingCost} " + Currency);
+            Console.WriteLine($"Transport: {transportCost} " + Currency);
+            Console.WriteLine($"Total = {TotalPrice()} " + Currency);
         }
         public decimal TotalPrice()
         {
