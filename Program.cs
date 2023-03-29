@@ -20,8 +20,17 @@ namespace KataProgram
             Console.WriteLine("Discount =");
             int universalDiscount = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine("Cap in [percentage or absolute]");
+            bool capInPercentage = Console.ReadLine().Equals("percentage") ? true : false;
+            Console.WriteLine("Cap =");
+            decimal capAmount = Convert.ToDecimal(Console.ReadLine()); ;
+            if (capInPercentage)
+            {
+                capAmount = PriceCalculations.PercentageToAbsolute(productPrice, capAmount);
+            }
+
             Console.WriteLine("Additive or Multiplicative discount =");
-            string discountMethod = Console.ReadLine();
+            string? discountMethod = Console.ReadLine();
 
             Console.WriteLine("Apply tax before discounts calculation:[Yes,No]");
             bool taxPriority = Console.ReadLine().Equals("Yes") ? true : false;
@@ -56,7 +65,7 @@ namespace KataProgram
             };
 
             AdditionalCosts costs = new AdditionalCosts(tax, packagingAmount, transportAmount);
-            Discounts discounts = new Discounts(discountMethod, universalDiscount, upcSpecialCodes);
+            Discounts discounts = new Discounts(capAmount, discountMethod, universalDiscount, upcSpecialCodes);
             PriceCalculations calc = new PriceCalculations(taxPriority);
             Product product = new Product(productName, productUpc, productPrice);
 

@@ -12,11 +12,13 @@ namespace DiscountSolution
         public static int UniversalDiscountPercentage;
         static Dictionary<int, int> UpcDiscounts;
         public static string DiscountMethod;
-        public Discounts(string _discountMethod, int _universalDiscount, Dictionary<int, int> _upcDiscount) 
+        public static decimal capAmount;
+        public Discounts(decimal cap, string _discountMethod, int _universalDiscount, Dictionary<int, int> _upcDiscount) 
         {
             UniversalDiscountPercentage = _universalDiscount;
             UpcDiscounts = _upcDiscount;
             DiscountMethod = _discountMethod;
+            capAmount = cap;
         }
         //calculate universal discount 
         public static decimal UniversalProductDiscount(decimal _basicPrice)
