@@ -1,5 +1,8 @@
 ﻿using System;
+using CostSolution;
+using DiscountSolution;
 using PriceCalculatorSolution;
+using ProductSolution;
 
 namespace KataProgram
 {

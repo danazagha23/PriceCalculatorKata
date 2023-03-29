@@ -4,8 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DiscountSolution;
+using CostSolution;
+using PriceCalculatorSolution;
 
-namespace PriceCalculatorSolution
+namespace ProductSolution
 {
     public class Product
     {

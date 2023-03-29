@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PriceCalculatorSolution;
 
-namespace PriceCalculatorSolution
+namespace DiscountSolution
 {
     public class Discounts
     {
