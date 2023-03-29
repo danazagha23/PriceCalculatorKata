@@ -12,6 +12,7 @@ namespace CostSolution
         public static int TaxPercentage;
         public static decimal PackagingAmount;
         public static decimal TransportAmount;
+        
         public AdditionalCosts(int _tax, decimal _packagingAmount, decimal _transportAmount)
         {
             TaxPercentage = _tax;

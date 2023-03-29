@@ -10,18 +10,18 @@ namespace KataProgram
     {
         static void Main(string[] args) 
         {
-            Console.WriteLine("Enter product name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter product upc:");
-            int upc = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter product price:");
-            decimal price = Convert.ToDecimal(Console.ReadLine());
+            string productName = "The Little Prince";
+            int productUpc = 12345;
+            decimal productPrice = 20.25M;
 
-            Console.WriteLine("Enter tax percentage:");
+            Console.WriteLine("Tax =");
             int tax = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Enter universal discount percentage:");
+            Console.WriteLine("Discount =");
             int universalDiscount = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Additive or Multiplicative discount =");
+            string discountMethod = Console.ReadLine();
 
             Console.WriteLine("Apply tax before discounts calculation:[Yes,No]");
             bool taxPriority = Console.ReadLine().Equals("Yes") ? true : false;
@@ -37,7 +37,7 @@ namespace KataProgram
 
                 Console.WriteLine("Enter Packaging Cost:");
                 decimal packagingCost = Convert.ToDecimal(Console.ReadLine());
-                if (percentagePackagingCost) packagingAmount = PriceCalculations.PercentageToAbsolute(price, packagingCost);
+                if (percentagePackagingCost) packagingAmount = PriceCalculations.PercentageToAbsolute(productPrice, packagingCost);
                 else packagingAmount = packagingCost;
 
                 Console.WriteLine("Define transport cost by percentage or an absolute value:[percentage, absolute]");
@@ -45,7 +45,7 @@ namespace KataProgram
 
                 Console.WriteLine("Enter transport Cost:");
                 decimal transportCost = Convert.ToDecimal(Console.ReadLine());
-                if (percentageTransportCost) transportAmount = PriceCalculations.PercentageToAbsolute(price, transportCost);
+                if (percentageTransportCost) transportAmount = PriceCalculations.PercentageToAbsolute(productPrice, transportCost);
                 else transportAmount = transportCost;
             }
 
@@ -56,9 +56,9 @@ namespace KataProgram
             };
 
             AdditionalCosts costs = new AdditionalCosts(tax, packagingAmount, transportAmount);
-            Discounts discounts = new Discounts(universalDiscount, upcSpecialCodes);
+            Discounts discounts = new Discounts(discountMethod, universalDiscount, upcSpecialCodes);
             PriceCalculations calc = new PriceCalculations(taxPriority);
-            Product product = new Product(name, upc, price);
+            Product product = new Product(productName, productUpc, productPrice);
 
 
             product.DisplayProductPrice();

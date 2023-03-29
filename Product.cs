@@ -29,14 +29,23 @@ namespace ProductSolution
             UPC = upc;
             BasicPrice = price;
             taxPriority = PriceCalculations.TaxPriority;
-            upcDiscount = Discounts.UPCProductDiscount(BasicPrice, UPC);
+            
             if (taxPriority)
             {
                 tax = AdditionalCosts.ProductTax(BasicPrice);
                 universalDiscount = Discounts.UniversalProductDiscount(BasicPrice);
+                if (Discounts.DiscountMethod.Equals("additive"))
+                {
+                    upcDiscount = Discounts.UPCProductDiscount(BasicPrice, UPC);
+                } 
+                else
+                {
+                    upcDiscount = Discounts.UPCProductDiscount(BasicPrice - universalDiscount, UPC);
+                }
             }
             else
             {
+                upcDiscount = Discounts.UPCProductDiscount(BasicPrice, UPC);
                 tax = AdditionalCosts.ProductTax(BasicPrice - upcDiscount);
                 universalDiscount = Discounts.UniversalProductDiscount(BasicPrice - upcDiscount);
             }

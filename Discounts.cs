@@ -11,10 +11,12 @@ namespace DiscountSolution
     {
         public static int UniversalDiscountPercentage;
         static Dictionary<int, int> UpcDiscounts;
-        public Discounts(int _universalDiscount, Dictionary<int, int> _upcDiscount) 
+        public static string DiscountMethod;
+        public Discounts(string _discountMethod, int _universalDiscount, Dictionary<int, int> _upcDiscount) 
         {
             UniversalDiscountPercentage = _universalDiscount;
             UpcDiscounts = _upcDiscount;
+            DiscountMethod = _discountMethod;
         }
         //calculate universal discount 
         public static decimal UniversalProductDiscount(decimal _basicPrice)
@@ -30,5 +32,6 @@ namespace DiscountSolution
             }
             return 0;
         }
+
     }
 }
