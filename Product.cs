@@ -17,9 +17,9 @@ namespace ProductSolution
         public decimal BasicPrice { get; set; }
         public string Currency { get; set; }
 
-        decimal tax;
-        decimal universalDiscount;
-        decimal upcDiscount;
+        decimal tax = 0;
+        decimal universalDiscount = 0;
+        decimal upcDiscount = 0;
         decimal packagingCost = AdditionalCosts.PackagingAmount;
         decimal transportCost = AdditionalCosts.TransportAmount;
         bool taxPriority;
@@ -55,13 +55,13 @@ namespace ProductSolution
         }
         public void DisplayProductPrice()
         {
-            Console.WriteLine($"Cost = {BasicPrice} " + Currency);
-            Console.WriteLine($"Tax = {tax} " + Currency);
+            Console.WriteLine($"Cost = {BasicPrice.ToTwoDecimalDigits()} " + Currency);
+            Console.WriteLine($"Tax = {tax.ToTwoDecimalDigits()} " + Currency);
             decimal discount = Discounts.capAmount > (universalDiscount + upcDiscount) ? universalDiscount + upcDiscount : Discounts.capAmount;
-            Console.WriteLine($"Discounts: {discount} " + Currency);
-            Console.WriteLine($"Packaging: {packagingCost} " + Currency);
-            Console.WriteLine($"Transport: {transportCost} " + Currency);
-            Console.WriteLine($"Total = {TotalPrice()} " + Currency);
+            Console.WriteLine($"Discounts: {discount.ToTwoDecimalDigits()} " + Currency);
+            Console.WriteLine($"Packaging: {packagingCost.ToTwoDecimalDigits()} " + Currency);
+            Console.WriteLine($"Transport: {transportCost.ToTwoDecimalDigits()} " + Currency);
+            Console.WriteLine($"Total = {TotalPrice().ToTwoDecimalDigits()} " + Currency);
         }
         public decimal TotalPrice()
         {

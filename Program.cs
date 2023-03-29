@@ -14,7 +14,7 @@ namespace KataProgram
             string name = Console.ReadLine();
             Console.WriteLine("Enter product upc:");
             int upc = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter product price:");
+            Console.WriteLine("Enter product price with currency:");
             string Price = Console.ReadLine();
 
             string[] priceCurrency = Price.Split(' ');

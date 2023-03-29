@@ -19,7 +19,7 @@ namespace PriceCalculatorSolution
         //convert percentage to absolute value
         public static decimal PercentageToAbsolute(decimal _basicPrice, decimal _percentage)
         {
-            return decimal.Round(_basicPrice * _percentage / 100, 2, MidpointRounding.AwayFromZero);
+            return decimal.Round(_basicPrice * _percentage / 100, 4, MidpointRounding.AwayFromZero);
         }
     }
 }
