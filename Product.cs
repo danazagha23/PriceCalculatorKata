@@ -23,6 +23,7 @@ namespace ProductSolution
         decimal transportCost = AdditionalCosts.TransportAmount;
         bool taxPriority;
 
+
         public Product(string name, int upc, decimal price)
         {
             Name = name;
@@ -54,7 +55,8 @@ namespace ProductSolution
         {
             Console.WriteLine($"Cost = {BasicPrice}");
             Console.WriteLine($"Tax = {tax}");
-            Console.WriteLine($"Discounts: {universalDiscount + upcDiscount}");
+            decimal discount = Discounts.capAmount > (universalDiscount + upcDiscount) ? universalDiscount + upcDiscount : Discounts.capAmount;
+            Console.WriteLine($"Discounts: {discount}");
             Console.WriteLine($"Packaging: {packagingCost}");
             Console.WriteLine($"Transport: {transportCost}");
             Console.WriteLine($"Total = {TotalPrice()}");
