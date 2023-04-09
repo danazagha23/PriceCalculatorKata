@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorKata\\PriceCalculatorSolution.csproj": {}
   },
   "projects": {
@@ -13,19 +12,6 @@
         "projectPath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorKata\\PriceCalculatorSolution.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorKata\\obj\\",
-=======
-    "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\PriceCalculatorSolution.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\PriceCalculatorSolution.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\PriceCalculatorSolution.csproj",
-        "projectName": "PriceCalculatorSolution",
-        "projectPath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\PriceCalculatorSolution.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\obj\\",
->>>>>>> e9931fb5003fdb04a5382ff192c59769baceb649
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

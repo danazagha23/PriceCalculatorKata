@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "YcT+mwbsE0086rlOgy05/hikDCaqryVvZ8iv4pQ1nrA+vbo6DCg2fzpEe1FNYXOmCAYcZrwdep0gGbSy0kJzbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorKata\\PriceCalculatorSolution.csproj",
-=======
-  "dgSpecHash": "096+pmZK+tGfdf0n5Woy7kbq1rcMrn4hJyyyX2TOw2yCyC/H1uJnkz2jsVx4WD/nxicVl0+aUF4EL37qstSQ1g==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\c#\\PriceCalculatorSolution\\PriceCalculatorSolution.csproj",
->>>>>>> e9931fb5003fdb04a5382ff192c59769baceb649
   "expectedPackageFiles": [],
   "logs": []
 }
