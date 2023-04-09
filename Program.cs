@@ -11,13 +11,13 @@ namespace PriceCalculatorSolution
             Console.WriteLine("Enter tax percentage:");
             int tax = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Enter discount percentage:");
-            int discount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter universal discount percentage:");
+            int universalDiscount = Convert.ToInt32(Console.ReadLine());
 
             ProductServiceModel pm = new ProductServiceModel
             {
                 TaxPercentage = tax,
-                DiscountPercentage = discount
+                DiscountPercentage = universalDiscount
             };
 
             Console.WriteLine(pm.GetResultText());
