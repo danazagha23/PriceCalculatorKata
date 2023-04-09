@@ -1,4 +1,4 @@
-﻿using PriceCalculatorSolution;
+using PriceCalculatorSolution;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -70,7 +70,7 @@ namespace ProductServicesSolution
                 sb.AppendLine($"  UPC: {product.UPC}");
                 sb.AppendLine($"  Tax: {TaxPercentage}");
                 sb.AppendLine($"   Universal Discount: {DiscountPercentage}");
-                sb.AppendLine($"   UPC Discount: {DiscountPercentage}");
+                sb.AppendLine($"   UPC Discount: {UpcCodeDiscounts[product.UPC]}");
                 sb.AppendLine($"  Tax Amount: {CalculateTax(product.Price)}");
                 sb.AppendLine($"   Discount Amount: {CalculateUPCDiscount(product.Price, product.UPC)}");
                 sb.AppendLine($"   Price: {product.Price}");
