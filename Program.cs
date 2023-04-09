@@ -1,11 +1,12 @@
 ﻿using System;
 using PriceCalculatorSolution;
+using ProductServicesSolution;
 
-namespace KataProgram
+namespace PriceCalculatorSolution
 {
     public class Program
     {
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
             Console.WriteLine("Enter tax percentage:");
             int tax = Convert.ToInt32(Console.ReadLine());
@@ -13,10 +14,13 @@ namespace KataProgram
             Console.WriteLine("Enter discount percentage:");
             int discount = Convert.ToInt32(Console.ReadLine());
 
-            PriceCalculations calc = new PriceCalculations(tax, discount);
-            Product product = new Product("Book", 12345, 20.25M);
+            ProductServiceModel pm = new ProductServiceModel
+            {
+                TaxPercentage = tax,
+                DiscountPercentage = discount
+            };
 
-            Console.WriteLine(product.DisplayProductPrice());
+            Console.WriteLine(pm.GetResultText());
         }
     }
 }
