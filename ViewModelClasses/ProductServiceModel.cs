@@ -35,8 +35,15 @@ namespace ProductServicesSolution
             {
                 tax = TaxService.CalculateTax(p.Price);
                 universalDiscount = DiscountService.CalculateUniversalDiscount(p.Price);
-                upcDiscount = DiscountService.CalculateUPCDiscount(p.Price, p.UPC);
                 expenses = ExpensesService.CalculateTotalExpenses(p.Price);
+                if (DiscountService.DiscountMethod.Equals("additive"))
+                {
+                    upcDiscount = DiscountService.CalculateUPCDiscount(p.Price, p.UPC);
+                }
+                else
+                {
+                    upcDiscount = DiscountService.CalculateUPCDiscount(p.Price - universalDiscount, p.UPC);
+                }
             }
             else
             {
@@ -63,8 +70,11 @@ namespace ProductServicesSolution
 
                 sb.Append($"Tax: {TaxService.TaxPercentage} %, ");
                 sb.Append($"Discount: {DiscountService.UniversalDiscountPercentage} %, ");
-                sb.AppendLine($"UPC Discount: {DiscountService.UpcCodeDiscounts[product.UPC]} % for UPC = {product.UPC}");
-
+                if (DiscountService.UpcCodeDiscounts.ContainsKey(product.UPC))
+                {
+                    sb.AppendLine($"UPC Discount: {DiscountService.UpcCodeDiscounts[product.UPC]} % ");
+                }
+                sb.Append($"for UPC = {product.UPC} ");
                 sb.AppendLine(ExpensesService.PrintExpenses());
 
                 sb.AppendLine($"Tax Amount: {tax}$, ");

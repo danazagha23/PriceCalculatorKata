@@ -24,7 +24,7 @@ namespace PriceCalculatorSolution
             StringBuilder sb = new StringBuilder(1024);
             foreach (Expense e in Expenses)
             {
-                sb.Append(e.Description + " cost: " + e.Amount);
+                sb.AppendLine(e.Description + " cost: " + e.Amount);
             }
             return sb.ToString();
         }

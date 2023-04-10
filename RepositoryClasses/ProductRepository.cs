@@ -26,7 +26,7 @@ namespace PriceCalculatorSolution
                     Name = "Book2",
                     UPC = 789,
                     Price = 15.33M,
-                    },
+                   },
 
             };
         }
