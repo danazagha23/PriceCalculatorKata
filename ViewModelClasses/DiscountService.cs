@@ -47,7 +47,7 @@ namespace ProductServicesSolution
             }
             else
             {
-                CapAmount = Convert.ToDecimal(cap);
+                CapAmount = Convert.ToDecimal(cap.Substring(0, cap.Length - 1));
             }
             return CapAmount;
         }

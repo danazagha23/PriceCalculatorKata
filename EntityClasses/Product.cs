@@ -17,18 +17,18 @@ namespace PriceCalculatorSolution
         // Calculated Properties
         public decimal? TotalPrice { get; set; }
 
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder(1024);
+        //public override string ToString()
+        //{
+        //    StringBuilder sb = new StringBuilder(1024);
 
-            sb.Append(Name);
-            sb.AppendLine($"  UPC: {UPC}");
-            sb.AppendLine($"   Price: {Price:c}");
-            if (TotalPrice.HasValue)
-            {
-                sb.AppendLine($"   Total Price: {TotalPrice:c}");
-            }
-            return sb.ToString();
-        }
+        //    sb.Append(Name);
+        //    sb.AppendLine($"  UPC: {UPC}");
+        //    sb.AppendLine($"   Price: {Price:c}");
+        //    if (TotalPrice.HasValue)
+        //    {
+        //        sb.AppendLine($"   Total Price: {TotalPrice:c}");
+        //    }
+        //    return sb.ToString();
+        //}
     }
 }

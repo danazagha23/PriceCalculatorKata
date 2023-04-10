@@ -9,6 +9,9 @@ namespace PriceCalculatorSolution
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter currency:");
+            string currency = Console.ReadLine();
+
             Console.WriteLine("Enter tax percentage:");
             int tax = Convert.ToInt32(Console.ReadLine());
 
@@ -64,11 +67,12 @@ namespace PriceCalculatorSolution
             }
 
             ProductServiceModel pm = new ProductServiceModel();
-            
+
             TaxService ts = new TaxService(tax, isTaxPrecedence);
             DiscountService ds = new DiscountService(universalDiscount, discountMethod, capAmount);
             ExpensesService es = new ExpensesService(expenses);
-            
+            CurrencyService cs = new CurrencyService(currency);
+
             Console.WriteLine(pm.GetResultText());
 
         }

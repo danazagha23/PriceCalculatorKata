@@ -33,32 +33,32 @@ namespace ProductServicesSolution
         {
             if (TaxService.isTaxPrecedence)
             {
-                tax = TaxService.CalculateTax(p.Price);
-                universalDiscount = DiscountService.CalculateUniversalDiscount(p.Price);
-                expenses = ExpensesService.CalculateTotalExpenses(p.Price);
+                tax = TaxService.CalculateTax(CurrencyService.ConvertCurrency(p.Price));
+                universalDiscount = DiscountService.CalculateUniversalDiscount(CurrencyService.ConvertCurrency(p.Price));
+                expenses = ExpensesService.CalculateTotalExpenses(CurrencyService.ConvertCurrency(p.Price));
                 if (DiscountService.DiscountMethod.Equals("additive"))
                 {
-                    upcDiscount = DiscountService.CalculateUPCDiscount(p.Price, p.UPC);
+                    upcDiscount = DiscountService.CalculateUPCDiscount(CurrencyService.ConvertCurrency(p.Price), p.UPC);
                 }
                 else
                 {
-                    upcDiscount = DiscountService.CalculateUPCDiscount(p.Price - universalDiscount, p.UPC);
+                    upcDiscount = DiscountService.CalculateUPCDiscount(CurrencyService.ConvertCurrency(p.Price) - universalDiscount, p.UPC);
                 }
-                cap = DiscountService.CalculateCapAmount(p.Price);
+                cap = DiscountService.CalculateCapAmount(CurrencyService.ConvertCurrency(p.Price));
             }
             else
             {
-                upcDiscount = DiscountService.CalculateUPCDiscount(p.Price, p.UPC);
-                tax = TaxService.CalculateTax(p.Price - upcDiscount);
-                universalDiscount = DiscountService.CalculateUniversalDiscount(p.Price - upcDiscount);
-                expenses = ExpensesService.CalculateTotalExpenses(p.Price - upcDiscount);
-                cap = DiscountService.CalculateCapAmount(p.Price);
+                upcDiscount = DiscountService.CalculateUPCDiscount(CurrencyService.ConvertCurrency(p.Price), p.UPC);
+                tax = TaxService.CalculateTax(CurrencyService.ConvertCurrency(p.Price) - upcDiscount);
+                universalDiscount = DiscountService.CalculateUniversalDiscount(CurrencyService.ConvertCurrency(p.Price) - upcDiscount);
+                expenses = ExpensesService.CalculateTotalExpenses(CurrencyService.ConvertCurrency(p.Price) - upcDiscount);
+                cap = DiscountService.CalculateCapAmount(CurrencyService.ConvertCurrency(p.Price));
             }
 
             decimal additionalCosts = tax + expenses;
             discounts = cap > (universalDiscount + upcDiscount) ? universalDiscount + upcDiscount : cap;
 
-            totalPrice = p.Price + additionalCosts - discounts;
+            totalPrice = CurrencyService.ConvertCurrency(p.Price) + additionalCosts - discounts;
         }
 
         //print result
@@ -78,16 +78,16 @@ namespace ProductServicesSolution
                 }
                 sb.AppendLine($"for UPC = {product.UPC} ");
                 sb.Append($"{DiscountService.DiscountMethod} discounts, ");
-                sb.AppendLine($"cap: {cap}");
+                sb.AppendLine($"cap: {cap} c");
                 sb.AppendLine(ExpensesService.PrintExpenses());
 
-                sb.AppendLine($"Tax Amount: {tax}$, ");
-                sb.Append($"UPC Discount Amount: {upcDiscount}$, ");
-                sb.AppendLine($"Universal Discount Amount: {universalDiscount}$, ");
-                sb.AppendLine($"Discounts: {discounts}$");
+                sb.AppendLine($"Tax Amount: {tax} {CurrencyService.Currency}, ");
+                sb.Append($"UPC Discount Amount: {upcDiscount} {CurrencyService.Currency}, ");
+                sb.AppendLine($"Universal Discount Amount: {universalDiscount} {CurrencyService.Currency}, ");
+                sb.AppendLine($"Discounts: {discounts} {CurrencyService.Currency}");
                 
-                sb.AppendLine($"   Price: {product.Price}$");
-                sb.AppendLine($"   Total Price: {totalPrice:c}$");
+                sb.AppendLine($"   Price: {CurrencyService.ConvertCurrency(product.Price)} {CurrencyService.Currency}");
+                sb.AppendLine($"   Total Price: {totalPrice:c} {CurrencyService.Currency}");
 
                 sb.AppendLine($"---------------");
             }
