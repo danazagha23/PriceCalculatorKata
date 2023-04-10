@@ -2,6 +2,7 @@
 using PriceCalculatorSolution;
 using ProductServicesSolution;
 
+
 namespace PriceCalculatorSolution
 {
     public class Program
@@ -17,14 +18,44 @@ namespace PriceCalculatorSolution
             Console.WriteLine("Is Tax Precedence ?:[yes,no]");
             bool isTaxPrecedence = Console.ReadLine().Equals("yes") ? true : false;
 
-            ProductServiceModel pm = new ProductServiceModel
+            Console.WriteLine("Is there any Expenses?:[yes,no]");
+            bool exsistExpenses = Console.ReadLine().Equals("yes") ? true : false;
+            var expenses = new List<Expense>();
+
+            while (exsistExpenses)
             {
-                TaxPercentage = tax,
-                DiscountPercentage = universalDiscount,
-                isTaxPrecedence = isTaxPrecedence,
-            };
+                Console.WriteLine("Define Expense description: [Packaging, Transport, ..]");
+                string description = Console.ReadLine();
+
+                Console.WriteLine("Define expense by percentage or an absolute value:[percentage, absolute]");
+                bool isPercentageAmount = Console.ReadLine().Equals("percentage") ? true : false;
+
+                Console.WriteLine("Enter Expense Amount:");
+                decimal amount = Convert.ToDecimal(Console.ReadLine());
+
+                Expense e = new Expense
+                {
+                    Description = description,
+                    Amount = amount,
+                    isAmountPercentage = isPercentageAmount,
+                };
+
+                expenses.Add(e);
+
+                Console.WriteLine("Is there any additional Expenses?:[yes,no]");
+                exsistExpenses = Console.ReadLine().Equals("yes") ? true : false;
+            }
+
+            ProductServiceModel pm = new ProductServiceModel();
+            
+            TaxService ts = new TaxService(tax, isTaxPrecedence);
+            DiscountService ds = new DiscountService(universalDiscount);
+            ExpensesService es = new ExpensesService(expenses);
+            
 
             Console.WriteLine(pm.GetResultText());
+
+
         }
     }
 }
