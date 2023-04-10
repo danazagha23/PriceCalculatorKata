@@ -28,7 +28,7 @@ namespace ProductServicesSolution
         }
 
         //calculate total Price and each cost and discount separately
-        decimal tax, expenses, universalDiscount, upcDiscount, totalPrice;
+        decimal tax, expenses, universalDiscount, upcDiscount, discounts, cap, totalPrice;
         public void CalculateTotalPrice(Product p)
         {
             if (TaxService.isTaxPrecedence)
@@ -44,6 +44,7 @@ namespace ProductServicesSolution
                 {
                     upcDiscount = DiscountService.CalculateUPCDiscount(p.Price - universalDiscount, p.UPC);
                 }
+                cap = DiscountService.CalculateCapAmount(p.Price);
             }
             else
             {
@@ -51,10 +52,11 @@ namespace ProductServicesSolution
                 tax = TaxService.CalculateTax(p.Price - upcDiscount);
                 universalDiscount = DiscountService.CalculateUniversalDiscount(p.Price - upcDiscount);
                 expenses = ExpensesService.CalculateTotalExpenses(p.Price - upcDiscount);
+                cap = DiscountService.CalculateCapAmount(p.Price);
             }
 
             decimal additionalCosts = tax + expenses;
-            decimal discounts = upcDiscount + universalDiscount;
+            discounts = cap > (universalDiscount + upcDiscount) ? universalDiscount + upcDiscount : cap;
 
             totalPrice = p.Price + additionalCosts - discounts;
         }
@@ -74,13 +76,15 @@ namespace ProductServicesSolution
                 {
                     sb.AppendLine($"UPC Discount: {DiscountService.UpcCodeDiscounts[product.UPC]} % ");
                 }
-                sb.Append($"for UPC = {product.UPC} ");
+                sb.AppendLine($"for UPC = {product.UPC} ");
+                sb.Append($"{DiscountService.DiscountMethod} discounts, ");
+                sb.AppendLine($"cap: {cap}");
                 sb.AppendLine(ExpensesService.PrintExpenses());
 
                 sb.AppendLine($"Tax Amount: {tax}$, ");
                 sb.Append($"UPC Discount Amount: {upcDiscount}$, ");
-                sb.Append($"Universal Discount Amount: {universalDiscount}$, ");
-                sb.AppendLine($"Discounts: {universalDiscount + upcDiscount}$");
+                sb.AppendLine($"Universal Discount Amount: {universalDiscount}$, ");
+                sb.AppendLine($"Discounts: {discounts}$");
                 
                 sb.AppendLine($"   Price: {product.Price}$");
                 sb.AppendLine($"   Total Price: {totalPrice:c}$");

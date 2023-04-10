@@ -21,6 +21,19 @@ namespace PriceCalculatorSolution
             Console.WriteLine("Choose discount method: [additive, multiplicative]");
             string discountMethod = Console.ReadLine();
 
+            Console.WriteLine("Cap Amount in [percentage or absolute]");
+            bool capInPercentage = Console.ReadLine().Equals("percentage") ? true : false;
+
+            Console.WriteLine("Cap =");
+            string capAmount = Console.ReadLine(); ;
+            if (capInPercentage)
+            {
+                capAmount += "%";
+            }
+            else
+            {
+                capAmount += "$";
+            }
 
             Console.WriteLine("Is there any Expenses?:[yes,no]");
             bool exsistExpenses = Console.ReadLine().Equals("yes") ? true : false;
@@ -53,7 +66,7 @@ namespace PriceCalculatorSolution
             ProductServiceModel pm = new ProductServiceModel();
             
             TaxService ts = new TaxService(tax, isTaxPrecedence);
-            DiscountService ds = new DiscountService(universalDiscount, discountMethod);
+            DiscountService ds = new DiscountService(universalDiscount, discountMethod, capAmount);
             ExpensesService es = new ExpensesService(expenses);
             
             Console.WriteLine(pm.GetResultText());

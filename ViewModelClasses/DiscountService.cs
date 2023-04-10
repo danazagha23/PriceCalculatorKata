@@ -9,13 +9,16 @@ namespace ProductServicesSolution
 {
     public class DiscountService
     {
-        public DiscountService(decimal universalDiscountPercentage, string discountMethod) 
+        public DiscountService(decimal universalDiscountPercentage, string discountMethod, string capAmount) 
         {
             UniversalDiscountPercentage = universalDiscountPercentage;
             UpcCodeDiscounts = UPCDiscountRepository.GetAll();
             DiscountMethod = discountMethod;
+            cap = capAmount;
         }
 
+        public static string? cap;
+        public static decimal CapAmount { get; set; }
         public static Dictionary<int, int> UpcCodeDiscounts { get; set; }
         public static decimal UniversalDiscountPercentage { get; set; }
         public static string DiscountMethod { get; set; }
@@ -31,9 +34,22 @@ namespace ProductServicesSolution
         {
             if (UpcCodeDiscounts.ContainsKey(code))
             {
-                return decimal.Round(basicPrice * UpcCodeDiscounts[code] / 100, 2, MidpointRounding.AwayFromZero);
+                return ProductServiceModel.PercentageToAbsolute(basicPrice, UpcCodeDiscounts[code]);
             }
             return 0;
+        }
+        //calculate cap amount
+        public static decimal CalculateCapAmount(decimal basicPrice)
+        {
+            if (cap.Contains("%"))
+            {
+                CapAmount = ProductServiceModel.PercentageToAbsolute(basicPrice, Convert.ToDecimal(cap.Substring(0, cap.Length-1)));
+            }
+            else
+            {
+                CapAmount = Convert.ToDecimal(cap);
+            }
+            return CapAmount;
         }
     }
 }
