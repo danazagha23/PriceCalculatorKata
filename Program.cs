@@ -14,10 +14,14 @@ namespace PriceCalculatorSolution
             Console.WriteLine("Enter universal discount percentage:");
             int universalDiscount = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine("Is Tax Precedence ?:[yes,no]");
+            bool isTaxPrecedence = Console.ReadLine().Equals("yes") ? true : false;
+
             ProductServiceModel pm = new ProductServiceModel
             {
                 TaxPercentage = tax,
-                DiscountPercentage = universalDiscount
+                DiscountPercentage = universalDiscount,
+                isTaxPrecedence = isTaxPrecedence,
             };
 
             Console.WriteLine(pm.GetResultText());
