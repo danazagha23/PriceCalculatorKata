@@ -18,6 +18,10 @@ namespace PriceCalculatorSolution
             Console.WriteLine("Is Tax Precedence ?:[yes,no]");
             bool isTaxPrecedence = Console.ReadLine().Equals("yes") ? true : false;
 
+            Console.WriteLine("Choose discount method: [additive, multiplicative]");
+            string discountMethod = Console.ReadLine();
+
+
             Console.WriteLine("Is there any Expenses?:[yes,no]");
             bool exsistExpenses = Console.ReadLine().Equals("yes") ? true : false;
             var expenses = new List<Expense>();
@@ -49,12 +53,10 @@ namespace PriceCalculatorSolution
             ProductServiceModel pm = new ProductServiceModel();
             
             TaxService ts = new TaxService(tax, isTaxPrecedence);
-            DiscountService ds = new DiscountService(universalDiscount);
+            DiscountService ds = new DiscountService(universalDiscount, discountMethod);
             ExpensesService es = new ExpensesService(expenses);
             
-
             Console.WriteLine(pm.GetResultText());
-
 
         }
     }
