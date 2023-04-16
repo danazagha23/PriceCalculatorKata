@@ -18,12 +18,12 @@ namespace PriceCalculatorSolution
         {
             if (Currency.Equals("GBP"))
             {
-                return decimal.Round(price * 0.8M, 2, MidpointRounding.AwayFromZero);
+                return decimal.Round(price * 0.8M, 4, MidpointRounding.AwayFromZero);
             }
 
             if (Currency.Equals("JPY"))
             {
-                return decimal.Round(price * 133.58M, 2, MidpointRounding.AwayFromZero);
+                return decimal.Round(price * 133.58M, 4, MidpointRounding.AwayFromZero);
             }
 
             return price;

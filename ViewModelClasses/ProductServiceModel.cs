@@ -24,10 +24,10 @@ namespace ProductServicesSolution
         //convert percentage to absolute value
         public static decimal PercentageToAbsolute(decimal _basicPrice, decimal _percentage)
         {
-            return decimal.Round(_basicPrice * _percentage / 100, 2, MidpointRounding.AwayFromZero);
+            return decimal.Round(_basicPrice * _percentage / 100, 4, MidpointRounding.AwayFromZero);
         }
 
-        //calculate total Price and each cost and discount separately
+        //calculate total Price, costs and discounts separately
         decimal tax, expenses, universalDiscount, upcDiscount, discounts, cap, totalPrice;
         public void CalculateTotalPrice(Product p)
         {
@@ -78,16 +78,16 @@ namespace ProductServicesSolution
                 }
                 sb.AppendLine($"for UPC = {product.UPC} ");
                 sb.Append($"{DiscountService.DiscountMethod} discounts, ");
-                sb.AppendLine($"cap: {cap} c");
+                sb.AppendLine($"cap: {cap.ToTwoDecimalDigits()} ");
                 sb.AppendLine(ExpensesService.PrintExpenses());
 
-                sb.AppendLine($"Tax Amount: {tax} {CurrencyService.Currency}, ");
-                sb.Append($"UPC Discount Amount: {upcDiscount} {CurrencyService.Currency}, ");
-                sb.AppendLine($"Universal Discount Amount: {universalDiscount} {CurrencyService.Currency}, ");
-                sb.AppendLine($"Discounts: {discounts} {CurrencyService.Currency}");
+                sb.AppendLine($"Tax Amount: {tax.ToTwoDecimalDigits()} {CurrencyService.Currency}, ");
+                sb.Append($"UPC Discount Amount: {upcDiscount.ToTwoDecimalDigits()} {CurrencyService.Currency}, ");
+                sb.AppendLine($"Universal Discount Amount: {universalDiscount.ToTwoDecimalDigits()} {CurrencyService.Currency}, ");
+                sb.AppendLine($"Discounts: {discounts.ToTwoDecimalDigits()} {CurrencyService.Currency}");
                 
                 sb.AppendLine($"   Price: {CurrencyService.ConvertCurrency(product.Price)} {CurrencyService.Currency}");
-                sb.AppendLine($"   Total Price: {totalPrice:c} {CurrencyService.Currency}");
+                sb.AppendLine($"   Total Price: {totalPrice.ToTwoDecimalDigits()} {CurrencyService.Currency}");
 
                 sb.AppendLine($"---------------");
             }
