@@ -1,0 +1,15 @@
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\bin\Debug\net7.0\PriceCalculatorSolution.exe
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\bin\Debug\net7.0\PriceCalculatorSolution.deps.json
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\bin\Debug\net7.0\PriceCalculatorSolution.runtimeconfig.json
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\bin\Debug\net7.0\PriceCalculatorSolution.dll
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\bin\Debug\net7.0\PriceCalculatorSolution.pdb
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.csproj.AssemblyReference.cache
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.AssemblyInfo.cs
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.dll
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\refint\PriceCalculatorSolution.dll
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.pdb
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\PriceCalculatorSolution.genruntimeconfig.cache
+C:\Users\hp\Desktop\c#\PriceCalculatorKata\obj\Debug\net7.0\ref\PriceCalculatorSolution.dll

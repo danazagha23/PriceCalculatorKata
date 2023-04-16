@@ -1,4 +1,4 @@
-﻿using PriceCalculatorSolution;
+using PriceCalculatorSolution;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,10 +15,12 @@ namespace ProductServicesSolution
         public ProductServiceModel()
         {
             Products = ProductRepository.GetAll();
+            UpcCodeDiscounts = UPCDiscountRepository.GetAll();
         }
 
         //properities
         public List<Product> Products { get; set; }
+        public Dictionary<int, int> UpcCodeDiscounts { get; set; }
         public decimal? TaxPercentage { get; set; }
         public decimal? DiscountPercentage { get; set; }
         public string ResultText { get; set; }
@@ -34,7 +36,7 @@ namespace ProductServicesSolution
             return 0;
         }
 
-        public decimal CalculateDiscount(decimal basicPrice)
+        public decimal CalculateUniversalDiscount(decimal basicPrice)
         {
             if (DiscountPercentage.HasValue)
             {
@@ -42,13 +44,21 @@ namespace ProductServicesSolution
             }
             return 0;
         }
-
-        public decimal CalculateTotalPrice(decimal basicPrice)
+        public decimal CalculateUPCDiscount(decimal basicPrice, int code)
         {
-            decimal additionalCosts = CalculateTax(basicPrice);
-            decimal discounts = CalculateDiscount(basicPrice);
+            if (UpcCodeDiscounts.ContainsKey(code))
+            {
+                return decimal.Round(basicPrice * UpcCodeDiscounts[code] / 100, 2, MidpointRounding.AwayFromZero);
+            }
+            return 0;
+        }
 
-            return basicPrice + additionalCosts - discounts;
+        public decimal CalculateTotalPrice(Product p)
+        {
+            decimal additionalCosts = CalculateTax(p.Price);
+            decimal discounts = CalculateUniversalDiscount(p.Price) + CalculateUPCDiscount(p.Price, p.UPC);
+
+            return p.Price + additionalCosts - discounts;
         }
 
         public string GetResultText()
@@ -59,11 +69,12 @@ namespace ProductServicesSolution
                 sb.Append(product.Name);
                 sb.AppendLine($"  UPC: {product.UPC}");
                 sb.AppendLine($"  Tax: {TaxPercentage}");
-                sb.AppendLine($"   Discount: {DiscountPercentage}");
+                sb.AppendLine($"   Universal Discount: {DiscountPercentage}");
+                sb.AppendLine($"   UPC Discount: {UpcCodeDiscounts[product.UPC]}");
                 sb.AppendLine($"  Tax Amount: {CalculateTax(product.Price)}");
-                sb.AppendLine($"   Discount Amount: {CalculateDiscount(product.Price)}");
+                sb.AppendLine($"   Discount Amount: {CalculateUPCDiscount(product.Price, product.UPC)}");
                 sb.AppendLine($"   Price: {product.Price}");
-                sb.AppendLine($"   Total Price: {CalculateTotalPrice(product.Price):c}");
+                sb.AppendLine($"   Total Price: {CalculateTotalPrice(product):c}");
 
                 sb.AppendLine($"---------------");
             }
