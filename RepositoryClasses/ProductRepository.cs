@@ -13,15 +13,20 @@ namespace PriceCalculatorSolution
             return new List<Product>
             {
                   new Product {
-                    Name = "Book",
+                    Name = "The Little Prince",
                     UPC = 12345,
+                    Price = 20.25M,
+                  },
+                  new Product {
+                    Name = "The Little Prince 2",
+                    UPC = 111,
                     Price = 20.25M,
                   },
                   new Product {
                     Name = "Book2",
                     UPC = 789,
                     Price = 15.33M,
-                  },
+                    },
 
             };
         }
